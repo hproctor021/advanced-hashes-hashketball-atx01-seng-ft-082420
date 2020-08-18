@@ -127,6 +127,7 @@ def game_hash
   }
 end
 
+
 def num_points_scored(name)
   points_racked = 0
   game_hash.each do |location, team_data|
@@ -139,6 +140,7 @@ def num_points_scored(name)
   end
 end
 
+
 def shoe_size(name)
   game_hash.each do |location, team_data|
     team_data[:players].each do |data|
@@ -149,6 +151,7 @@ def shoe_size(name)
   end
 end
 
+
 def team_colors(team)
   game_hash.each do |location, value|
     value.each do |key, inner_values|
@@ -158,7 +161,6 @@ def team_colors(team)
     end
   end
 end
-
 
 
 def team_names
@@ -175,34 +177,14 @@ end
     
   
 def player_numbers(team_info)  
-  #jersey_numbers = []
-  
   game_hash.each do |location, values|
     if team_info == values[:team_name]
       return values[:players].map { |player| player[:number]}
     end
   end
 end
-  
-  
-  
-  
-  #game_hash.each do |location, team_data|
-   # team_data.each do |key, value|
-    #  if key == :players
-     #   value.each do |inner_key, inner_value|
-      #    if inner_key == :number
-       #     jersey_numbers.push(inner_value)
-        #  end
-        #end
-      #end
-   # end
-  #end
-  #return jersey_numbers
-  #binding.pry
-#end
-      
-
+ 
+ 
 def player_stats(name)
   game_hash.each do |location, team_data|
     team_data[:players].each do |player_name|
@@ -213,8 +195,21 @@ def player_stats(name)
   end
 end
 
-#def big_shoe_rebounds
-#return game_hash[:rebounds]
 
+def big_shoe_rebounds
+  big_foot = 0
+  rebounds = 0
+  
+  game_hash.each do |location, values|
+    values[:players].each do |player|
+      shoe_size = player[:shoe]
+      if shoe_size > big_foot
+        big_foot = shoe_size
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
 
 #binding.pry
