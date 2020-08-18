@@ -175,22 +175,32 @@ end
     
   
 def player_numbers(team_info)  
-  jersey_numbers = []
+  #jersey_numbers = []
   
-  game_hash.each do |location, team_data|
-    team_data.each do |key, value|
-      if key == :players
-        value.each do |inner_key, inner_value|
-          if inner_key == :number
-            jersey_numbers.push(inner_value)
-          end
-        end
-      end
+  game_hash.each do |location, values|
+    if team_info == values[:team_name]
+      return values[:players].map { |player| player[:number]}
     end
   end
-  return jersey_numbers
-  binding.pry
 end
+  
+  
+  
+  
+  #game_hash.each do |location, team_data|
+   # team_data.each do |key, value|
+    #  if key == :players
+     #   value.each do |inner_key, inner_value|
+      #    if inner_key == :number
+       #     jersey_numbers.push(inner_value)
+        #  end
+        #end
+      #end
+   # end
+  #end
+  #return jersey_numbers
+  #binding.pry
+#end
       
 
 def player_stats(name)
